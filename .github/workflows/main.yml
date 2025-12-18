@@ -33,11 +33,11 @@ jobs:
 
       # 이미지 생성
       - name: docker image 생성
-        run: docker build -t hisieun/devops_step2:v1.0
+        run: docker build -t hisieun/devops_step2:v1.0 .
 
       # 도커 로그인. 함수 사용
       - name: docker login
-        run: docker/login-action@v1
+        uses: docker/login-action@v1
         with: 
           username: hisieun 
           password: ${{secrets.DOCKER_PASSWORD}}
