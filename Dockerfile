@@ -1,7 +1,6 @@
 # Step 2: Package the application into a Docker image
 # Use an official OpenJDK runtime as the base image
-FROM eclipse-temurin:17-jre
-
+FROM eclipse-temurin:17-jdk-jammy
 # Set the working directory
 WORKDIR /app
 
