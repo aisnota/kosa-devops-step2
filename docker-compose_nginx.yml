@@ -15,12 +15,12 @@ services:
       - my_bridge_network
 
   app1:
-    image: hisieun/devops_step2:latest
+    image: hisieun/devops_step2:v1.0
     networks:
       - my_bridge_network
 
   app2:
-    image: hisieun/devops_step2:latest
+    image: hisieun/devops_step2:1.0
     networks:
       - my_bridge_network
 
