@@ -51,10 +51,12 @@ jobs:
     runs-on: self-hosted
     steps:
       # copy yml file from src
+      # nginx 볼륨용 폴더도 복사
       - uses: actions/checkout@v3
         with:
           sparse-checkout: |
             docker-compose_nginx.yml
+            nginx/nginx.conf
           sparse-checkout-cone-mode: false
           clean: true
 
