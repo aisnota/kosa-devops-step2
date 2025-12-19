@@ -50,6 +50,14 @@ jobs:
     name: Deploy
     runs-on: self-hosted
     steps:
+      # copy yml file from src
+      - uses: actions/checkout@v3
+        with:
+          sparse-checkout: |
+            docker-compose_nginx.yml
+          sparse-checkout-cone-mode: false
+          clean: true
+
       # 로그인
       - name: docker login
         uses: docker/login-action@v1
