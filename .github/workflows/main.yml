@@ -10,7 +10,15 @@ jobs:
 
     steps:
       # 라이브러리 사용(내 폴더에 있는 소스 복사)
-      - uses: actions/checkout@v3
+      # - uses: actions/checkout@v3
+      - name: 폴더 정리
+        run: rm -rf kosa-devops-step2
+
+      - name: 소스 복사
+        run: git clone https://github.com/aisnota/kosa-devops-step2
+
+      - name: 경로 변경
+        run: cd kosa-devops-step2
 
       # 윈도우에서는 ,,,실행안됨.
       - name: gradlew 파일 실행 권한 설정
