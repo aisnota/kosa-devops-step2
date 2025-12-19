@@ -33,7 +33,7 @@ jobs:
 
       # 이미지 생성
       - name: docker image 생성
-        run: docker build -t hisieun/devops_step2:v1.0 .
+        run: docker build -t hisieun/devops_step2:latest .
 
       # 도커 로그인. 함수 사용
       - name: docker login
@@ -43,7 +43,7 @@ jobs:
           password: ${{secrets.DOCKER_PASSWORD}}
 
       - name: docker image 허브에 저장
-        run: docker push hisieun/devops_step2:v1.0
+        run: docker push hisieun/devops_step2:latest
       
   deploy:
     needs: build
@@ -68,7 +68,7 @@ jobs:
           password: ${{secrets.DOCKER_PASSWORD}}
 
       - name: docker image pull
-        run: docker pull hisieun/devops_step2:v1.0
+        run: docker pull hisieun/devops_step2:latest
 
       - name: docker compose 실행 파일 위치로 이동
         run: cd /home/kosa/kosa-devops-step2
