@@ -45,6 +45,12 @@ jobs:
       - name: docker image 허브에 저장
         run: docker push hisieun/devops_step2:latest
       
+      - name: 파일 업로드
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          file: docker-compose_nginx.yml
+
   deploy:
     needs: build
     name: Deploy
@@ -52,13 +58,18 @@ jobs:
     steps:
       # copy yml file from src
       # nginx 볼륨용 폴더도 복사
-      - uses: actions/checkout@v3
+      # - uses: actions/checkout@v3
+      #   with:
+      #     sparse-checkout: |
+      #       docker-compose_nginx.yml
+      #       nginx/nginx.conf
+      #     sparse-checkout-cone-mode: false
+      #     clean: true
+
+      - name: download file
+        uses: actions/download-arifact@v4
         with:
-          sparse-checkout: |
-            docker-compose_nginx.yml
-            nginx/nginx.conf
-          sparse-checkout-cone-mode: false
-          clean: true
+          name: my-artifact
 
       # 로그인
       - name: docker login
