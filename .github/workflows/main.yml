@@ -17,20 +17,23 @@ jobs:
       - name: 소스 복사
         run: git clone https://github.com/aisnota/kosa-devops-step2
 
-      - name: 경로 변경
-        run: cd kosa-devops-step2
-
       # 윈도우에서는 ,,,실행안됨.
       - name: gradlew 파일 실행 권한 설정
-        run: chmod +x gradlew
+        run: |
+          cd kosa-devops-step2
+          chmod +x gradlew
 
       # 테스트 진행
       - name: Test with gradle
-        run:  ./gradlew --info test
+        run: |
+          cd kosa-devops-step2
+          ./gradlew --info test
 
       # 부트에서 실행파일인 jar 파일 만들겠다.
       - name: Spring boot 실행 파일 생성
-        run: ./gradlew bootJar
+        run: |
+          cd kosa-devops-step2
+          ./gradlew bootJar
 
       # 이미지 생성
       - name: docker image 생성
@@ -51,8 +54,8 @@ jobs:
         with:
           name: my-artifact
           path: |
-            docker-compose_nginx.yml
-            nginx/nginx.conf
+            kosa-devops-step2/docker-compose_nginx.yml
+            kosa-devops-step2/nginx/nginx.conf
 
   deploy:
     needs: build
